@@ -1,0 +1,132 @@
+//colors
+$body-background-color: darkred;
+$form-background-color: white;
+$input-color: white;
+$headlines-color : white;
+$break-small: 600px;
+
+// note: Sass treats dashes '-' and underscores '_' the same in variable names
+// Variables can be used for values, properties, or even to build selectors
+
+body {
+    background-color: $body-background-color;          
+}
+
+// SCSS has to be converted back to plain CSS for it to actually work- TERMINAL directory cd -path
+// in terminal put 'sass styles.scss styles.css (command parameter for change parameter changed to)
+
+/*#contactform {
+    background-color: $form-background-color;
+}
+#contactform input, #contactform textarea {
+    background-color: $input-color;
+} OR
+ Nesting like this is not valid in plain CSS — it's a feature of SCSS.
+ Nested:
+#contactform {
+    background-color: $form-background-color;
+    input, textarea {
+        background-color: $input-color;
+        flex: 2;
+    }
+}Final with @media query*/
+#contactform {
+    background-color: $form-background-color;
+    input, textarea {
+        background-color: $input-color;
+        flex: 2;
+    }
+    @media (min-width: $break-small) {
+        & {
+            width: 90%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto; 
+        } 
+    }
+}
+/*This is still SCSS because:
+
+It uses variables like $break-small
+It nests selectors and media queries
+It uses & to refer to the parent selector
+
+Run sass styles.scss styles.css
+to overrwrite previous file with updated changes
+
+-SASS MIxins-
+
+Instead of writing this everytime :
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+  Define a Mixin like this:
+  @mixin flex-container() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+  Then use it like this:
+  fieldset > div {
+  @include flex-container;
+}
+  
+ -Make SASS Mixins smarter with Parameters-
+
+ control direction and wrapping:
+ @mixin flex-container($axis, $wrap: nowrap) {
+  display: flex;
+  flex-flow: $axis $wrap;
+}
+  Now you can :
+  @include flex-container(row, wrap); // row wrap
+  @include flex-container(column);    // column nowrap
+ 
+ 
+ Instead of rerunning SASS evrytime in terminal, make a watch file:
+ sass --watch styles.scss:styles.css
+ Terminal automatically converts as changes are made to SCSS file
+ When done, stop watching with Ctrl + c 
+ 
+ 
+ 
+ 
+ Breakpoint Mixin - define a mixin that handles media queries based on screen size
+ 
+ @mixin breakpoint($break) {
+  @if $break == large {
+    @media (max-width: $break-large) { @content; }
+  } @else if $break == medium {
+    @media (max-width: $break-medium) { @content; }
+  } @else if $break == small {
+    @media (max-width: $break-small) { @content; }
+  } @else {
+    @media ($break) { @content; }
+  }
+}
+  $break is a variable you pass like "small" or "max-width: 480px"
+  @content is a placeholder that gets replaced with the CSS you put inside the @include
+  
+  How to use it:
+  body {
+  background: white;
+
+  @include breakpoint(large) { background: red; }
+  @include breakpoint(medium) { background: cyan; }
+  @include breakpoint(small) { background: green; }
+  @include breakpoint("max-width: 480px") { background: yellow; }
+}
+  note: Always include braces {} when using @include with @content.
+  That’s how the mixin knows what to inject.*/
+
+
